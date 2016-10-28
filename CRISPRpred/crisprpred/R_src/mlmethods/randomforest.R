@@ -12,9 +12,11 @@
 #' @examples
 #' featurelist = c("X30mer", "Percent.Peptide", "Amino.Acid.Cut.position","predictions")
 #' #suppose we have a file as '../crisprpred/data-raw/sample_data.csv' and current directory is set to '../crisprpred'
+#' setwd('..')
 #' dir = getwd()
 #' filepath = paste0(dir,'/data-raw/sample_data.csv')
 #' data = read.csv(filepath)
+#' h2o.init()
 #' randomforest(featurelist,data,leaveonegene=1)
 
 randomforest = function(featurelist, featuredata,leaveonegene = 0, kfold = 10, trees = 50, learningrate = 0.6) {

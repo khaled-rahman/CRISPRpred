@@ -2,7 +2,6 @@
 
 export(dplearning)
 export(featureformula)
-export(featurization)
 export(lmregression)
 export(mars)
 export(randomforest)
