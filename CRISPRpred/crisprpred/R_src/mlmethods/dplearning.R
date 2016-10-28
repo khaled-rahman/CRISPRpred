@@ -5,13 +5,14 @@
 #' @param featuredata provided dataset
 #' @param leaveonegene 1 means this method will perform leave-one-out cross-validation; otherwise it will perform n-fold cross-validation
 #' @param kfold a value for cross validation, by default it is set to 10
-#' @param learningrrate learning rate value. Default one is set to 0.6
+#' @param learningrate learning rate value. Default one is set to 0.6
 #' @return a vector of spearman correlations for all runs
 #' @export
 #' @examples
 #' featurelist = c("X30mer", "Percent.Peptide", "Amino.Acid.Cut.position","predictions")
 #' #suppose we have a file as '../crisprpred/data-raw/sample_data.csv' and current directory is set to '../crisprpred'
 #' dir = getwd()
+#' setwd('..')
 #' filepath = paste0(dir,'/data-raw/sample_data.csv')
 #' data = read.csv(filepath)
 #' dplearning(featurelist, data,leaveonegene=1)
