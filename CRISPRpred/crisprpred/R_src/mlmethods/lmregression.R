@@ -10,7 +10,7 @@
 #' @examples
 #' featurelist = c("X30mer", "Percent.Peptide", "Amino.Acid.Cut.position","predictions")
 #' #suppose we have a file as '../crisprpred/data-raw/sample_data.csv' and current directory is set to '../crisprpred'
-#' setwd('..')
+#' #setwd('..')
 #' dir = getwd()
 #' filepath = paste0(dir,'/data-raw/sample_data.csv')
 #' data = read.csv(filepath)
