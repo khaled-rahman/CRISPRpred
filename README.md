@@ -1,7 +1,7 @@
 ## CRISPRpred: Efficient in silico on-target activity prediction of sgRNAs in CRISPR/Cas9 ##
 
 Necessary Software Tools to install before working with CRISPRpred:
-  1. e1071, DAAG, h2o, roxygen2, randomForest, earth R packages
+  1. e1071, DAAG, h2o, roxygen2, randomForest, earth and Boruta R packages
       *You can install it by typing 'install.packages('e1071')' in your R console.
   2. viennaRNA tool and set system path accordingly
       *You can download and install it from the following link: http://www.tbi.univie.ac.at/RNA/#source_code_packages
