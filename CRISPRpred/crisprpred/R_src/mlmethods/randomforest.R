@@ -1,19 +1,21 @@
 #' Random Forest
 #'
 #' This function takes full filepath, a list of learning features, a value for cross-validation, the number of times data set will be iterated and learning rate. Now, it creates a deep learning model using  deeplearning function of h2o package and outputs RMSE based on provided dataset. Note that size of dataset should be enough to choose a suitable value for kfold.
-#' @param filepath a full path of the csv file
 #' @param featurelist a list of features. last name will indicate the value to be predicted.
+#' @param featuredata a sample dataset containing all features
+#' @param leaveonegene check for leaveonegeneout cross-validation
 #' @param kfold a value for cross validation. Default value is 3.
 #' @param trees number of trees that will be built.
-#' @param samplerate a fractional sampling rate in random forest. Default value is 0.6.
-#' @return nothing
+#' @param learningrate a fractional sampling rate in random forest. Default value is 0.6.
+#' @return spearman correlation
 #' @export
 #' @examples
-#' featurelist = c("X30mer", "Percent.Peptide", "Amino.Acid.Cut.position","predictions")
-#' #suppose we have a file as '../crisprpred/data-raw/sample_data.csv' and current directory is set to '../crisprpred'
+#' featurelist = c("Percent.Peptide", "Amino.Acid.Cut.position","predictions")
+#' #suppose we have a file as '../crisprpred/data-raw/sample.csv' and current directory is set to '../crisprpred'
 #' dir = getwd()
-#' filepath = paste0(dir,'/data-raw/sample_data.csv')
-#' randomforest(filepath,featurelist,3,1,0.56)
+#' filepath = paste0(dir,'/data-raw/sample.csv')
+#' data = read.csv(filepath)
+#' randomforest(featurelist,data)
 randomforest = function(featurelist, featuredata,leaveonegene = 0, kfold = 10, trees = 50, learningrate = 0.6) {
   predict = featurelist[length(featurelist)]
   featurelist = featurelist[-length(featurelist)]

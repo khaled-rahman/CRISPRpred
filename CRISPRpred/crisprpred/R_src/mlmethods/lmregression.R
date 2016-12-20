@@ -3,19 +3,22 @@
 #' This function takes featurelist, dataset and a value for cross-validation. Now, it creates a formula and outputs RMSE based on provided dataset.
 #' @param featurelist a list of feature
 #' @param featuredata provided dataset
+#' @param leaveonegene check for leaveonegeneout cross-validation
 #' @param kfold a value for cross validation
-#' @return nothing
+#' @return spearman correlation
 #' @export
 #' @examples
-#' featurelist = c("X30mer", "Percent.Peptide", "Amino.Acid.Cut.position","predictions")
-#' input = featurization(input,featurelist)
-#' lmregression(featurelist,input,3)
+#' featurelist = c("Percent.Peptide", "Amino.Acid.Cut.position","predictions")
+#' dir = getwd()
+#' filepath = paste0(dir,'/data-raw/sample.csv')
+#' data = read.csv(filepath)
+#' lmregression(featurelist,data,0)
 lmregression = function(featurelist, featuredata,leaveonegene = 0, kfold = 10) {
   fformula = featureformula(featurelist)
   if (leaveonegene == 0) {
     model1 = lm(as.formula(fformula), featuredata)
     model2 = CVlm(data = featuredata, form.lm = model1, m = kfold)
-    predictionsS = predict(model2, featuredata)
+    predictionsS = stats::predict(model1, featuredata)
     j = 1
     rmseS = c()
     spcor = c()

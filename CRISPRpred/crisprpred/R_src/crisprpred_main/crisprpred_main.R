@@ -12,9 +12,9 @@
 #' @export
 #' @examples 
 #' setwd('..')
-#' #suppose we have a file as '../crisprpred/data-raw/sample_data.csv' and current directory is set to '../crisprpred'
+#' #suppose we have a file as '../crisprpred/data-raw/sample.csv' and current directory is set to '../crisprpred'
 #' dir = getwd()
-#' datasetpath = paste0(dir,'/data-raw/sample_data.csv')
+#' datasetpath = paste0(dir,'/data-raw/sample.csv')
 #' featurelist = c("X30mer", "Percent.Peptide", "Amino.Acid.Cut.position","predictions")
 #' kfoldCross = 2
 #' crisprpred_main(datasetpath, featurelist, kfoldCross, 3, 4, 0.66)
@@ -32,7 +32,4 @@ crisprpred_main = function(datasetpath, featurelist, kfold, iteration4dl, trees,
   
   svmregression(featurelist, featuredata, kfold)
 
-  dplearning(datasetpath, featurelist, kfold, iteration4dl, learningrate)
-
-  randomforest(datasetpath, featurelist, kfold, trees, samplingrate)
 }

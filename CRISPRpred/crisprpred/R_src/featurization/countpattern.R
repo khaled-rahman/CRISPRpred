@@ -3,7 +3,7 @@
 #' This function takes sequence and pattern as input and count how many times a particular pattern is present in the sequence.
 #'
 #' @param sequence provided as a list of sequences
-#' @param patter a string
+#' @param pattern a string
 #' @return a list of integer indicating frequency of pattern.
 #' @export
 #' @examples

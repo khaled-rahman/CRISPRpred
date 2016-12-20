@@ -3,13 +3,16 @@
 #' This function takes svm regression formula, dataset and a value for cross-validation. Now, it outputs RMSE based on provided dataset.
 #' @param featurelist a list of features
 #' @param featuredata provided dataset
+#' @param leaveonegene check for leaveonegeneout cross-validation
 #' @param kfold a value for cross validation
-#' @return nothing
+#' @return spearman correlation
 #' @export
 #' @examples
-#' featurelist = c("X30mer", "Percent.Peptide", "Amino.Acid.Cut.position","predictions")
-#' input = featurization(input,featurelist)
-#' svmregression(featurelist,input,3)
+#' featurelist = c("Percent.Peptide", "Amino.Acid.Cut.position","predictions")
+#' dir = getwd()
+#' filepath = paste0(dir,'/data-raw/sample.csv')
+#' data = read.csv(filepath)
+#' svmregression(featurelist,data,0)
 svmregression = function(featurelist,featuredata,leaveonegene = 0, kfold = 10) {
   fformula = featureformula(featurelist)
   if (leaveonegene == 0) {

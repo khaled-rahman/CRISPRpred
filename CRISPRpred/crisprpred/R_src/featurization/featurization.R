@@ -5,9 +5,9 @@
 #' @param sequences provided as dataframe
 #' @param string a list of aminoacids or nucleotides
 #' @param seq sequence based features. by default it is true.
-#' @param seqord highest number of sequence which will be considered together
+#' @param seqorder highest number of sequence which will be considered together
 #' @param pos position specific features. by default it is true.
-#' @param posord highest number of sequence which will be considered together
+#' @param posorder highest number of sequence which will be considered together
 #' @return a featurized dataframe
 #' @export
 #' @examples
@@ -22,7 +22,7 @@ featurization <-
     colnames(features)[length(features)] = "Serial"
     if (seq == TRUE) {
       for (s in 1:seqorder) {
-        permu = permutations(
+        permu = gtools::permutations(
           n = length(string), r = s, v = string, repeats.allowed = TRUE
         )
         for (i in 1:length(permu[,1])) {
@@ -41,7 +41,7 @@ featurization <-
         nchar(toString(s))
       })))
       for (p in 1:posorder) {
-        permu = permutations(
+        permu = gtools::permutations(
           n = length(string), r = p, v = string, repeats.allowed = TRUE
         )
         ps = 0
