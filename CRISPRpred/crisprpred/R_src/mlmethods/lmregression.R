@@ -1,20 +1,15 @@
 #' Linear Regression
 #'
-#' This function takes featurelist, dataset, leave-one-out value  and a value for n-fold cross-validation. It creates a formula and outputs spearman correlation based on provided dataset.
+#' This function takes featurelist, dataset and a value for cross-validation. Now, it creates a formula and outputs RMSE based on provided dataset.
 #' @param featurelist a list of feature
 #' @param featuredata provided dataset
-#' @param leaveonegene 1 means this method will perform leave-one-out cross-validation; otherwise it will perform n-fold cross-validation
-#' @param kfold a value for cross validation, by default it is set to 10
-#' @return a vector of spearman correlations for all runs
+#' @param kfold a value for cross validation
+#' @return nothing
 #' @export
 #' @examples
 #' featurelist = c("X30mer", "Percent.Peptide", "Amino.Acid.Cut.position","predictions")
-#' #suppose we have a file as '../crisprpred/data-raw/sample_data.csv' and current directory is set to '../crisprpred'
-#' #setwd('..')
-#' dir = getwd()
-#' filepath = paste0(dir,'/data-raw/sample_data.csv')
-#' data = read.csv(filepath)
-#' lmregression(featurelist,data,1)
+#' input = featurization(input,featurelist)
+#' lmregression(featurelist,input,3)
 lmregression = function(featurelist, featuredata,leaveonegene = 0, kfold = 10) {
   fformula = featureformula(featurelist)
   if (leaveonegene == 0) {
@@ -24,7 +19,7 @@ lmregression = function(featurelist, featuredata,leaveonegene = 0, kfold = 10) {
     j = 1
     rmseS = c()
     spcor = c()
-    step = length(featuredata[,1]) / kfold
+    step = length(data[,1]) / kfold
     for (i in 1:(kfold - 1)) {
       errorS = featuredata$predictions[j:(j + step)] - predictionsS[j:(j + step)]
       rmseS = c(rmseS, rmse(errorS))

@@ -1,0 +1,16 @@
+source('../findposition.R')
+source('../findpattern.R')
+source('../viennaRNADataManipulation.R')
+source('../featurization.R')
+setwd('..')
+setwd('..')
+setwd('..')
+path = getwd()
+#print(path)
+inputFile = paste0(path,"/data-raw/sample_data.csv")
+#inputFile = paste0(path,"/data-raw/FC_plus_RES_withPredictions.csv")
+input = read.csv(inputFile)
+sequence = input$X30mer
+string = c('A','C','G','T')
+featuredata = featurization(sequence, string, seq = TRUE, seqorder = 1, pos = TRUE, posorder = 1)
+#featuredata['AA_18']
