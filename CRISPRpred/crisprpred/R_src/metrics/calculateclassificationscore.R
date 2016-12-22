@@ -1,0 +1,47 @@
+auc_pr <- function(pred, obs) {
+  xx.df <- prediction(pred, obs)
+  perf  <- performance(xx.df, "prec", "rec")
+  xy    <- data.frame(recall=perf@x.values[[1]], precision=perf@y.values[[1]])
+  xy <- subset(xy, !is.nan(xy$precision))
+  xy <- rbind(c(0, 0), xy)
+  res   <- trapz(xy$recall, xy$precision)
+  return(res)
+}
+calculateclassificationscore = function(name = "Temporary", predictedValue, trueValue){
+  pred <- prediction(predictedValue, trueValue)
+  roccurve <- performance(pred,"tpr","fpr")
+  plot(roccurve)
+  dev.copy(pdf, "ROCcurve.pdf")
+  dev.off()
+  pr <- performance(pred, "prec", "rec")
+  plot(pr)
+  dev.copy(pdf, "PRcurve.pdf")
+  dev.off()
+  ss <- performance(pred, "sens", "spec")
+  plot(ss)
+  dev.copy(pdf, "SensSpeci.pdf")
+  dev.off()
+  acc <- performance(pred, "acc")
+  plot(acc)
+  dev.copy(pdf, "Accuracy.pdf")
+  dev.off()
+  mcc <- performance(pred, "mat")
+  plot(mcc)
+  dev.copy(pdf, "MCCcurve.pdf")
+  dev.off()
+  f <- performance(pred, "f")
+  par(mar = c(5, 7, 2, 1))
+  #plot(f)
+  plot(f,xlab = "Threshold", cex.lab = 1.4, cex.axis = 0.5, cex.names = 0.8, beside =
+         TRUE, cex = 1.5)
+  dev.copy(pdf, "Fmeasure.pdf")
+  dev.off()
+  aucpr = auc_pr(predictedValue, trueValue)
+  auc = performance(pred, "auc")
+  roc = auc@y.values[[1]]
+  acc = acc@y.values[[1]]
+  acc = acc[!is.infinite(acc)]
+  acc = max(acc)
+  classscore = data.frame(acc, roc, aucpr)
+  return(classscore)
+}
