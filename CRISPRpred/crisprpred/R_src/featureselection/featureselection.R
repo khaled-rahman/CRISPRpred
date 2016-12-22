@@ -13,7 +13,7 @@
 #' data = read.csv(filepath)
 #' prediction = data$predictions
 #' data$predictions = NULL
-#' featires = featureselection(data, prediction, 100)
+#' features = featureselection(data, prediction, iterations = 100)
 featureselection = function(data, prediction, iterations = 200) {
   Fselection <- Boruta(x = data, y = prediction, maxRuns = iterations)
   importantFeature = unlist(lapply(Fselection$finalDecision, function(a)

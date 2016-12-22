@@ -1,7 +1,7 @@
 #'Description of viennaRNADataManipulation Function
 #'
 #'This function takes a list of sequences as input, manipulates data using rna sequence of viennaRNA and returns a dataframe.
-#' @param sequences a list of sequence strings
+#' @param sgrna a list of sequence strings
 #' @return datafram of extracted features based on input sequences
 #' @export
 #' @examples

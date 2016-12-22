@@ -13,8 +13,7 @@
 #' svmregression(featurelist,data)
 svmregression = function(featurelist,featuredata) {
   fformula = featureformula(featurelist)
-  modelS = svm(as.formula(fformula), featuredata, cross = kfold)
+  modelS = svm(as.formula(fformula), featuredata, cross = 10)
   predictionsS = predict(modelS, featuredata)
-  cat("SVM predictions:", predictionsS, "\n")
   return(predictionsS)
 }
