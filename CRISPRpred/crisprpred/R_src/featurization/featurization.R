@@ -28,8 +28,10 @@ featurization <-
         for (i in 1:length(permu[,1])) {
           temp = countpattern(sequence = sequences, pattern = paste(permu[i,], collapse = ''))
           #cat(length(temp),permu[i,],"\n")
-          features = data.frame(features, temp)
-          colnames(features)[length(features)] = paste(permu[i,], collapse = '')
+          if (sum(temp) > 0) {
+            features = data.frame(features, temp)
+            colnames(features)[length(features)] = paste(permu[i,], collapse = '')
+          }
           total = total + 1
         }
         cat(s, " order seq. features:", length(permu[,1]), ":total features = ", total, "\n")
@@ -46,12 +48,14 @@ featurization <-
         )
         ps = 0
         for (i in 1:(length(permu[,1]))) {
-          for (j in 1:(minlength-length(permu[i,])+1)) {
+          for (j in 1:(minlength - length(permu[i,]) + 1)) {
             #cat("Checking:",paste(permu[i,],collapse = ''),"\n")
             temp = findposition(sequence = sequences, pattern = paste(permu[i,], collapse = ''), j)
             #cat(length(temp),permu[i,],"\n")
-            features = data.frame(features, temp)
-            colnames(features)[length(features)] = paste0(paste(permu[i,], collapse = ''), "_", j)
+            if (sum(temp) > 0) {
+              features = data.frame(features, temp)
+              colnames(features)[length(features)] = paste0(paste(permu[i,], collapse = ''), "_", j)
+            }
             ps = ps + 1
             total = total + 1
           }
@@ -62,5 +66,6 @@ featurization <-
     features$Serial = NULL
     viennaData = viennaRNADataManipulation(sequences)
     features = data.frame(features, viennaData)
+    cat("2 viennaRNAdata related features :total features = ", (total + 2), "\n")
     return(features)
   }
