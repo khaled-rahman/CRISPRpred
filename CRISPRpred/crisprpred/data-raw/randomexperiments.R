@@ -1,12 +1,24 @@
+features = c()
+for(i in 1:length(randomforestfeatures[,2])){
+  if(randomforestfeatures[i,2] > 0.05){
+    features = c(features,toString(randomforestfeatures[i,1]))
+  }
+}
+features[length(features) + 1] = "geneThreshold"
+ontargetdata = read.csv('onTargetFinalData.csv')
 columns = names(ontargetdata)
 for(i in 1:length(columns)){
   if(!columns[i] %in% features){
     ontargetdata[columns[i]] = NULL
   }
 }
+gene = fcres$Target.gene
+ontargetdata = data.frame(ontargetdata, gene)
+
 genes = c(
   'CCDC101', 'CD13','CD15', 'CD28' ,'CD33' ,'CD43' ,'CD45' ,'CD5' ,'CUL3', 'H2-K', 'HPRT1' ,'MED12', 'NF1' ,'NF2', 'TADA1', 'TADA2B', 'THY1'
 )
+data = ontargetdata
 predValue = c()
 for (i in 1:length(genes)) {
   dataset = datapartition(
@@ -14,7 +26,7 @@ for (i in 1:length(genes)) {
   )
   training = dataset[[1]]
   testing = dataset[[2]]
-  bformula = featureformula(borutaF)
+  bformula = featureformula(features)
   svmmodel = svm(
     as.formula(bformula), training
   )
@@ -22,8 +34,9 @@ for (i in 1:length(genes)) {
   svmpred = as.vector(svmpred)
   predValue = c(predValue, svmpred)
 }
-cd13 = testing$result
-svmprediction = prediction(svmpred, cd13)
+svmpred = predValue
+trueV= sortedresults$result
+svmprediction = prediction(svmpred, trueV)
 svmROC = performance(svmprediction,"tpr","fpr")
 svmACC = performance(svmprediction, "acc")
 svmAUC = performance(svmprediction, "auc")
