@@ -17,7 +17,7 @@
 #' dataset = datapartition(data, nfold = 5)
 datapartition = function(data, targetcolumn, leaveonegene = FALSE, genename, nfold = 10) {
   if (leaveonegene == TRUE) {
-    if (nchar(genename) < 1) {
+    if (!genename %in% data[targetcolumn][,1]) {
       cat("Please provide a valid Gene name\n")
     }else{
       training = data[!data[targetcolumn][,1] %in% genename,]
