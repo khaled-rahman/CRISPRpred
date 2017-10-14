@@ -22,6 +22,6 @@ How To Run:
 
 * Then install the package by running './install.sh' in the terminal.
 
-'data-raw' folder contains two CSV files. FC_plus_RES_withPredictions.csv is the main benchmark data. You can also check the crisprpred_main.R file to check the structures. More instructions will be added soon.
+'data-raw' folder contains one CSV file. sample.csv is the main benchmark data. You can also check the crisprpred_main.R file to check the structures. More instructions will be added soon.
 
 We hope to update this tool in every week until we deploy the full working version.
