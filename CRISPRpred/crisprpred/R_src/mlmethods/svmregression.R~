@@ -9,7 +9,6 @@
 #' featurelist = c("Percent.Peptide", "Amino.Acid.Cut.position","predictions")
 #' dir = getwd()
 #' filepath = paste0(dir,'/data-raw/sample.csv')
-#' cat(filepath)
 #' data = read.csv(filepath)
 #' svmregression(featurelist,data)
 svmregression = function(featurelist,featuredata) {

@@ -48,3 +48,24 @@ legend(
   "topleft", c("A","C","G","T"), cex = 1.3, bty =
     "n", fill = colours
 )
+
+aps = .8125
+api = .78125
+agap = .875
+com = .965
+maps = .28716
+mpi = .36242
+mgap=.6636
+mcom=.91
+allscore = c(aps,maps,api,mpi,agap,mgap,com,mcom)
+allmat = matrix(allscore, nrow = 2, ncol = 4,byrow = FALSE)
+colr = c("red","blue")
+xas = c("PSF","PIF","GAP","COM")
+barplot(
+  allmat, xlab = "Feature Category", ylab = "Accuracy and MCC Value", cex.lab = 1.2, cex.axis = 1.2, cex.names = 1.1, beside =
+    TRUE, col = colr, names.arg = xas, axes = TRUE, ylim = c(0,1)
+)
+legend(
+  "topleft", c("Accuracy x 100%", "MCC"), cex = 1.3, bty =
+    "n", fill = colr
+)
