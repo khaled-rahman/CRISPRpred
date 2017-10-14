@@ -11,7 +11,7 @@ Necessary Software Tools to install before working with CRISPRpred:
 
 Drawplots folder contains several R scripts to draw interactive plots for dataset. crisprpred folder contains whole structure of crisprpred package. To install this package, follow Step 4.
 
-#Step 1: It constructs features using featurization.R program and Supplementary File1.csv file. You must maintain sample_data.csv file format.#
+#Step 1: It constructs features using featurization.R program and Supplementary File1.csv file. You must maintain sample.csv file format.#
 
     *Open the featurization.R file and set the file name in it or call the functions passing the the above file.
 
@@ -49,9 +49,9 @@ These features will be used in machine learning algorithms.
 #How to use installed package for prediction:#
     
     *featurelist as vector where last one will be the target. e.g., featurelist = c("X30mer", "Percent.Peptide", "Amino.Acid.Cut.position","predictions")
-    Now, suppose we have a file as '../crisprpred/data-raw/sample_data.csv' and current directory is set to '../crisprpred'
+    Now, suppose we have a file as '../crisprpred/data-raw/sample.csv' and current directory is set to '../crisprpred'
     dir = getwd()
-    filepath = paste0(dir,'/data-raw/sample_data.csv')
+    filepath = paste0(dir,'/data-raw/sample.csv')
     data = read.csv(filepath)
     lmregression(featurelist,data,1)
 
