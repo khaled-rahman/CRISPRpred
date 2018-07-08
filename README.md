@@ -1,4 +1,4 @@
-## CRISPRpred: Efficient in silico on-target activity prediction of sgRNAs in CRISPR/Cas9 ##
+## CRISPRpred: A flexible and efficient tool for sgRNAs on-target activity prediction in CRISPR/Cas9 systems ##
 
 Necessary Software Tools to install before working with CRISPRpred:
   1. e1071, DAAG, h2o, roxygen2, randomForest, earth and Boruta R packages
@@ -54,6 +54,10 @@ These features will be used in machine learning algorithms.
     filepath = paste0(dir,'/data-raw/sample.csv')
     data = read.csv(filepath)
     lmregression(featurelist,data,1)
+    
+#Citation
+
+Md. Khaledur Rahman and M. Sohel Rahman, "CRISPRpred: A flexible and efficient tool for sgRNAs on-target activity prediction in CRISPR/Cas9 systems", PLoS ONE 12(8): e0181943, August, 2017.
 
 CRISPRpred tool is fully developed by Md. Khaledur Rahman.
 If you need any help, please contact: khaled.cse.07@gmail.com
